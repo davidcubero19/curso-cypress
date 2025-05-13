@@ -5,8 +5,9 @@ import { Logger } from "../util/logger";
 
 const user = CommonPageMethods.generateRandomString(10);
 const contra = CommonPageMethods.generateRandomString(7)
+const existingUser = "random01";
 
-describe (CommonPageData.testSuites.registroYAutenticacion, () => {
+describe (CommonPageData.testSuites.registro, () => {
     it ("Registro de usuario válido", () => {
         Logger.stepNumber(1)
         Logger.step('Navegar a la página de inicio')
@@ -27,6 +28,29 @@ describe (CommonPageData.testSuites.registroYAutenticacion, () => {
         cy.wait(3000)
         Logger.verification("Verificar que se muestre el mensaje de sign up successful")
         SignUpMethods.verifySignUpSuccessfulMessageIsDisplayed();
+    });
+
+     it ("Registro de usuario inválido", () => {
+        Logger.stepNumber(1)
+        Logger.step('Navegar a la página de inicio')
+        CommonPageMethods.navigateToDemoBlaze();
+
+        Logger.stepNumber(2)
+        Logger.step('Hacer click en sign up')
+        CommonPageMethods.clickOnSignUpOption();
+
+        Logger.stepNumber(3)
+        Logger.step('Completar los campos obligatorios con información inválida')
+        SignUpMethods.insertUsername(existingUser);
+        SignUpMethods.insertPassword(contra);
+
+        Logger.stepNumber(4)
+        Logger.step('Hacer click en sign up para registrar usuario')
+        SignUpMethods.clickOnSignupButton;
+        cy.wait(3000)
+        Logger.verification("Verificar que se muestre el mensaje de this user already exist")
+        SignUpMethods.verifyThatThisUserAlreadyExistsMessageIsDisplayed();
+
     });
 });
 

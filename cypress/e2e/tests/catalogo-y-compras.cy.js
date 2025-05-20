@@ -14,7 +14,7 @@ import { ThankYouForYourPurchaseMethods } from "../pages/Thank-you-for-you-purch
 const user = LoginData.validCredentials;
 const product = 'ASUS Full HD'
 
-xdescribe(CommonPageData.testSuites.catalogoYCompras, () =>{
+describe(CommonPageData.testSuites.catalogoYCompras, () =>{
     it('Navegación por categorías', () => {
         Logger.stepNumber(1)
         Logger.step('Iniciar sesión como usuario registrado')

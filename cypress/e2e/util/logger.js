@@ -24,8 +24,14 @@ export class Logger{
     }
 
     static subVerification(description){
-        const text = `Substep # ${description}`
+        const text = `Subverification - ${description}`
         cy.log(text)
         cy.allure().step(text)
+    }
+
+    static postCondition(description){
+        const text = `Postcondition - ${description}`;
+        cy.log(text);
+        cy.allure().step(text);
     }
 }

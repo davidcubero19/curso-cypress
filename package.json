@@ -8,7 +8,8 @@
     "ejecutar-pruebas": "npx cypress run --headed --env allure=true",
     "generar-reporte": "  allure generate allure-results -o allure-report --clean",
     "abrir-reporte": "npx allure open",
-    "test": "npm run limpiar-reporte && ( npm run ejecutar-pruebas || true ) && npm run generar-reporte && npm run abrir-reporte"
+    "test": "npm run limpiar-reporte && ( npm run ejecutar-pruebas || true ) && npm run generar-reporte && npm run abrir-reporte",
+    "cy:parallel": "npm run limpiar-reporte && cypress-parallel -s ejecutar-pruebas -t 2 -d ./cypress/e2e/tests && npm run generar-reporte"
   },
   "repository": {
     "type": "git",
@@ -22,7 +23,8 @@
   },
   "homepage": "https://github.com/davidcubero19/curso-cypress#readme",
   "devDependencies": {
-    "cypress": "^14.3.3"
+    "cypress": "^14.3.3",
+    "cypress-parallel": "^0.15.0"
   },
   "dependencies": {
     "@shelex/cypress-allure-plugin": "^2.41.1",

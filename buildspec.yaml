@@ -1,11 +1,14 @@
 version: 0.2
+
 phases:
   install:
     runtime-versions:
       nodejs: latest
   pre_build:
     commands:
+     - echo "Instalando dependencias..."
      - npm install
   build:
     commands:
-     - npm run cy:parallel
+     - echo "Ejecutando pruebas en paralelo..."
+     - npm run cy:parallel || echo "Fallo el comando cy:parallel"

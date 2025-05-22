@@ -12,3 +12,7 @@ phases:
     commands:
      - echo "Ejecutando pruebas en paralelo..."
      - npm run cy:parallel || echo "Fallo el comando cy:parallel"
+  post_build:
+    commands:
+    - aws s3 sync allure-report s3://reporte-de-pruebas2/
+    - aws s3 cp --recursive --acl public-read s3://reporte-de-pruebas2/ s3://reporte-de-pruebas2/ --metadata-directive REPLACE
